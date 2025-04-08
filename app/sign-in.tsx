@@ -1,19 +1,22 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, Text, Pressable } from 'react-native';
+import { useRouter } from 'expo-router';
 import { Input } from './components/ui/Input';
 import { Button } from './components/ui/Button';
-import { useState } from 'react';
-import { router } from 'expo-router';
+import { useSession } from './ctx/ctx';
 
-export default function RegisterScreen() {
-    const [name, setName] = useState('');
+export default function SignInScreen() {
+    const router = useRouter();
+    const { signIn } = useSession();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
 
-    const handleRegister = async () => {
-        if (!name || !email || !password) {
-            setErrorMessage('Preencha todos os campos!');
+    const handleSignIn = async () => {
+        if (!email || !password) {
+            setErrorMessage('Por favor, preencha todos os campos!');
             return;
         }
 
@@ -21,11 +24,11 @@ export default function RegisterScreen() {
         setLoading(true);
 
         try {
-            await new Promise(resolve => setTimeout(resolve, 2000)); // simula chamada API
-            // Aqui você enviaria os dados para sua API
-            router.replace('/sign-in');
+            await new Promise(resolve => setTimeout(resolve, 2000)); // simula delay
+            signIn();
+            router.replace('/');
         } catch (error) {
-            setErrorMessage('Erro ao criar conta.');
+            setErrorMessage('Erro ao fazer login.');
         } finally {
             setLoading(false);
         }
@@ -33,15 +36,8 @@ export default function RegisterScreen() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Criar conta</Text>
+            <Text style={styles.title}>Login</Text>
 
-            <Input
-                label="Nome"
-                value={name}
-                onChangeText={setName}
-                placeholder="Digite seu nome"
-                errorMessage={errorMessage}
-            />
             <Input
                 label="Email"
                 value={email}
@@ -59,7 +55,7 @@ export default function RegisterScreen() {
                 errorMessage={errorMessage}
             />
 
-            <Button title="Cadastrar" onPress={handleRegister} loading={loading} />
+            <Button title="Entrar" onPress={handleSignIn} loading={loading} />
 
             <View style={styles.separatorContainer}>
                 <View style={styles.line} />
@@ -67,10 +63,8 @@ export default function RegisterScreen() {
                 <View style={styles.line} />
             </View>
 
-            <Pressable onPress={() => router.push('/sign-in')}>
-                <Text style={styles.registerLink}>
-                    Já está cadastrado? Toque aqui para logar!
-                </Text>
+            <Pressable onPress={() => router.push('/register')}>
+                <Text style={styles.registerLink}>Criar uma conta</Text>
             </Pressable>
         </View>
     );

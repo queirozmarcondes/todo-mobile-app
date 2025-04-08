@@ -7,7 +7,7 @@ export default function Index() {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      router.replace("/login"); // navega para login e remove a splash da pilha
+      router.replace("/sign-in"); // navega para login e remove a splash da pilha
     }, 2000); // tempo em ms (2 segundos)
 
     return () => clearTimeout(timeout);
