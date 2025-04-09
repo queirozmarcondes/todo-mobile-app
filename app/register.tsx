@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
 import { Input } from './components/ui/Input';
 import { Button } from './components/ui/Button';
 import { useState } from 'react';
@@ -34,8 +34,12 @@ export default function RegisterScreen() {
 
     return (
         <View style={styles.container}>
+            <Image
+                source={require("@/assets/images/splash-icon.png")}
+                style={styles.logo}
+                resizeMode="contain"
+            />
             <Text style={styles.title}>Criar conta</Text>
-
             <Input
                 label="Nome"
                 value={name}
@@ -82,6 +86,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         paddingHorizontal: 20,
+    },
+    logo: {
+        width: 120,
+        height: 120,
+        marginBottom: 20,
+        alignSelf: 'center',
     },
     title: {
         fontSize: 28,

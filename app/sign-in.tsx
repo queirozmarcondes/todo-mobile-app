@@ -39,7 +39,7 @@ export default function SignInScreen() {
     return (
         <View style={styles.container}>
             <Image
-                source={require("@/assets/images/splash-icon.png")}
+                source={require("@/assets/images/logo-login.png")}
                 style={styles.logo}
                 resizeMode="contain"
             />
