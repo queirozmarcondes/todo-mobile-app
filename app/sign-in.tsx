@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Pressable } from 'react-native';
+import { View, StyleSheet, Text, Pressable, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { Input } from './components/ui/Input';
 import { Button } from './components/ui/Button';
 import { useSession } from './ctx/ctx';
+import { Colors } from './constants/Colors';
+
 
 export default function SignInScreen() {
     const router = useRouter();
@@ -36,6 +38,11 @@ export default function SignInScreen() {
 
     return (
         <View style={styles.container}>
+            <Image
+                source={require("@/assets/images/splash-icon.png")}
+                style={styles.logo}
+                resizeMode="contain"
+            />
             <Text style={styles.title}>Login</Text>
 
             <Input
@@ -76,11 +83,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: 20,
     },
+    logo: {
+        width: 120,
+        height: 120,
+        marginBottom: 20,
+        alignSelf: 'center',
+    },
     title: {
         fontSize: 28,
         fontWeight: 'bold',
         marginBottom: 20,
         alignSelf: 'center',
+        fontFamily: "Inter_700Bold",
+        color: Colors.defaultTheme.tint,
     },
     separatorContainer: {
         flexDirection: 'row',
@@ -98,7 +113,7 @@ const styles = StyleSheet.create({
     },
     registerLink: {
         textAlign: 'center',
-        color: '#4CAF50',
+        color: Colors.defaultTheme.tint,
         fontWeight: 'bold',
         fontSize: 16,
     },

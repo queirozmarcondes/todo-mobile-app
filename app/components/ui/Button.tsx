@@ -1,3 +1,4 @@
+import { Colors } from '@/app/constants/Colors';
 import React from 'react';
 import {
     TouchableOpacity,
@@ -44,7 +45,7 @@ export function Button({
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: '#4CAF50',
+        backgroundColor: Colors.defaultTheme.tint,
         paddingVertical: 12,
         paddingHorizontal: 24,
         borderRadius: 5,
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     buttonDisabled: {
-        backgroundColor: '#A5D6A7',
+        backgroundColor: Colors.primary.main,
     },
     text: {
         color: '#fff',

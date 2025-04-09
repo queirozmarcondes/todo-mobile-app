@@ -3,6 +3,7 @@ import { Input } from './components/ui/Input';
 import { Button } from './components/ui/Button';
 import { useState } from 'react';
 import { router } from 'expo-router';
+import { Colors } from './constants/Colors';
 
 export default function RegisterScreen() {
     const [name, setName] = useState('');
@@ -87,6 +88,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 20,
         alignSelf: 'center',
+        color: Colors.defaultTheme.tint,
     },
     separatorContainer: {
         flexDirection: 'row',
@@ -104,7 +106,7 @@ const styles = StyleSheet.create({
     },
     registerLink: {
         textAlign: 'center',
-        color: '#4CAF50',
+        color: Colors.defaultTheme.tint,
         fontWeight: 'bold',
         fontSize: 16,
     },

@@ -1,82 +1,83 @@
 export const Colors = {
   defaultTheme: {
-    text: '#11181C',           // Cor principal do texto
-    background: '#fff',        // Cor do fundo (branco)
-    tint: '#009688',           // Cor de destaque principal (teal)
-    icon: '#687076',           // Cor dos ícones neutros
-    tabIconDefault: '#687076', // Cor dos ícones de abas não selecionados
-    tabIconSelected: '#00796B',// Cor dos ícones de abas selecionados (mais escuro)
+    text: '#FB8C00',            // Texto principal (laranja escuro)
+    background: '#FFF8F1',      // Fundo claro com tom creme
+    button: '#FB8C00',          // Laranja vibrante
+    tint: '#FF7043',            // Laranja queimado
+    icon: '#8D6E63',            // Marrom acinzentado
+    tabIconDefault: '#A1887F',  // Ícone de aba inativa (acinzentado quente)
+    tabIconSelected: '#E64A19', // Ícone de aba ativa (laranja intenso)
   },
 
   primary: {
-    light: '#B3E5FC',          // Azul claro
-    main: '#039BE5',           // Azul principal
-    dark: '#0288D1',           // Azul escuro
-    contrastText: '#fff',      // Cor de contraste para texto sobre o azul
+    light: '#FFE0B2',
+    main: '#FB8C00',
+    dark: '#EF6C00',
+    contrastText: '#fff',
   },
 
   secondary: {
-    light: '#80DEEA',          // Cyan claro
-    main: '#00BCD4',           // Cyan principal
-    dark: '#0097A7',           // Cyan escuro
-    contrastText: '#fff',      // Cor de contraste para texto sobre o cyan
+    light: '#D7CCC8',           // Cinza quente claro
+    main: '#A1887F',            // Cinza quente médio
+    dark: '#5D4037',            // Marrom escuro
+    contrastText: '#fff',
   },
 
   success: {
-    light: '#C8E6C9',          // Verde claro para sucesso
-    main: '#4CAF50',           // Verde principal para sucesso
-    dark: '#388E3C',           // Verde escuro
-    contrastText: '#fff',      // Cor de contraste para texto sobre o verde
+    light: '#C8E6C9',
+    main: '#66BB6A',
+    dark: '#388E3C',
+    contrastText: '#fff',
   },
 
   error: {
-    light: '#FFCDD2',          // Vermelho claro para erro
-    main: '#F44336',           // Vermelho principal para erro
-    dark: '#D32F2F',           // Vermelho escuro
-    contrastText: '#fff',      // Cor de contraste para texto sobre o vermelho
+    light: '#FFCDD2',
+    main: '#E53935',
+    dark: '#B71C1C',
+    contrastText: '#fff',
   },
 
   warning: {
-    light: '#FFF9C4',          // Amarelo claro para alertas
-    main: '#FFEB3B',           // Amarelo principal para alertas
-    dark: '#FBC02D',           // Amarelo escuro
-    contrastText: '#000',      // Cor de contraste para texto sobre o amarelo
+    light: '#FFE082',
+    main: '#FFB300',
+    dark: '#FF8F00',
+    contrastText: '#000',
   },
 
   info: {
-    light: '#BBDEFB',          // Azul claro para informações
-    main: '#2196F3',           // Azul principal para informações
-    dark: '#1976D2',           // Azul escuro
-    contrastText: '#fff',      // Cor de contraste para texto sobre o azul
+    light: '#B3E5FC',
+    main: '#29B6F6',
+    dark: '#0288D1',
+    contrastText: '#fff',
   },
 
   neutral: {
-    light: '#F5F5F5',          // Neutro claro (fundo)
-    main: '#BDBDBD',           // Neutro médio (bordas, separadores)
-    dark: '#616161',           // Neutro escuro
-    contrastText: '#000',      // Texto neutro
+    light: '#FAFAFA',
+    main: '#BDBDBD',
+    dark: '#424242',
+    contrastText: '#000',
   },
 
   text: {
-    primary: '#11181C',        // Texto principal
-    secondary: '#4F4F4F',      // Texto secundário (menos importante)
-    disabled: '#BDBDBD',       // Texto desabilitado
-    hint: '#9E9E9E',           // Dica de texto
+    primary: '#3E2723',       // Marrom escuro
+    secondary: '#5D4037',     // Marrom médio
+    disabled: '#BDBDBD',
+    hint: '#A1887F',
   },
 
   button: {
-    primary: '#039BE5',        // Cor do botão principal
-    secondary: '#00BCD4',      // Cor do botão secundário
-    disabled: '#BDBDBD',       // Cor do botão desabilitado
+    primary: '#FB8C00',
+    secondary: '#A1887F',
+    disabled: '#E0E0E0',
   },
 
   borders: {
-    light: '#E0E0E0',          // Cor para bordas claras
-    dark: '#BDBDBD',           // Cor para bordas escuras
+    light: '#E0E0E0',
+    dark: '#BDBDBD',
   },
 
   overlay: {
-    light: 'rgba(0, 0, 0, 0.2)',  // Sombra leve
-    dark: 'rgba(0, 0, 0, 0.5)',   // Sombra escura
+    light: 'rgba(255, 152, 0, 0.1)',
+    dark: 'rgba(0, 0, 0, 0.4)',
   },
 };
