@@ -1,8 +1,19 @@
-import React from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, Image, Animated } from 'react-native';
 import { Colors } from "@/app/constants/Colors";
 
 export default function SplashScreen() {
+    const [fadeAnim] = useState(new Animated.Value(0));  // Inicializa a animação
+
+    useEffect(() => {
+        // Anima o fade-in do texto após a carga inicial
+        Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 1500,  // Duração da animação
+            useNativeDriver: true,
+        }).start();
+    }, [fadeAnim]);
+
     return (
         <View style={styles.container}>
             <Image
@@ -10,7 +21,7 @@ export default function SplashScreen() {
                 style={styles.logo}
                 resizeMode="contain"
             />
-            <Text style={styles.title}>Todoist</Text>
+            <Animated.Text style={[styles.title, { opacity: fadeAnim }]}>Todoist</Animated.Text>
         </View>
     );
 }
