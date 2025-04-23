@@ -26,9 +26,15 @@ export default function SignInScreen() {
         setLoading(true);
 
         try {
+<<<<<<< HEAD
             // await new Promise(resolve => setTimeout(resolve, 2000)); // simula delay
             await signIn(email, password);
             router.replace('/todo');
+=======
+            await new Promise(resolve => setTimeout(resolve, 2000)); // simula delay
+            signIn();
+            router.replace('/');
+>>>>>>> 6fc16853cbe977de184532eaa47db98b164a8511
         } catch (error) {
             setErrorMessage('Erro ao fazer login.');
         } finally {
