@@ -6,7 +6,6 @@ import { Button } from './components/ui/Button';
 import { useSession } from './ctx/ctx';
 import { Colors } from './constants/Colors';
 
-
 export default function SignInScreen() {
     const router = useRouter();
     const { signIn } = useSession();
@@ -26,16 +25,13 @@ export default function SignInScreen() {
         setLoading(true);
 
         try {
-<<<<<<< HEAD
-            // await new Promise(resolve => setTimeout(resolve, 2000)); // simula delay
+            // Chama a função signIn, sem esperar por um valor de retorno
             await signIn(email, password);
+
+            // Se o login for bem-sucedido, redireciona para a tela de tarefas
             router.replace('/todo');
-=======
-            await new Promise(resolve => setTimeout(resolve, 2000)); // simula delay
-            signIn();
-            router.replace('/');
->>>>>>> 6fc16853cbe977de184532eaa47db98b164a8511
         } catch (error) {
+            // Caso ocorra algum erro no login
             setErrorMessage('Erro ao fazer login.');
         } finally {
             setLoading(false);

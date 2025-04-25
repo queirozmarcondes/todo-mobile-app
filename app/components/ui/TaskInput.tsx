@@ -1,10 +1,7 @@
-// src/components/ui/TaskInput.tsx
-
 import React from 'react';
 import { View, StyleSheet, TextInput, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from '@/app/constants/Colors';
-
 
 interface TaskInputProps {
     value: string;
@@ -13,6 +10,8 @@ interface TaskInputProps {
 }
 
 export function TaskInput({ value, onChangeText, onAddTask }: TaskInputProps) {
+    const isInputEmpty = value.trim() === '';
+
     return (
         <View style={styles.inputCard}>
             {/* Campo de Input */}
@@ -20,11 +19,11 @@ export function TaskInput({ value, onChangeText, onAddTask }: TaskInputProps) {
                 placeholder="Digite uma nova tarefa"
                 value={value}
                 onChangeText={onChangeText}
-                style={styles.input}
+                style={[styles.input, isInputEmpty && styles.inputError]}
             />
             {/* Ícone de adição */}
-            <Pressable onPress={onAddTask}>
-                <Ionicons name="add-circle" size={32} color={Colors.defaultTheme.tabIconSelected} />
+            <Pressable onPress={onAddTask} disabled={isInputEmpty} style={isInputEmpty ? styles.iconDisabled : null}>
+                <Ionicons name="add-circle" size={32} color={isInputEmpty ? Colors.defaultTheme.tabIconDefault : Colors.defaultTheme.tabIconSelected} />
             </Pressable>
         </View>
     );
@@ -52,5 +51,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         borderRadius: 8,
         color: Colors.defaultTheme.tabIconDefault,
+    },
+    inputError: {
+        borderColor: 'red',
+        borderWidth: 1,
+    },
+    iconDisabled: {
+        opacity: 0.5,
     },
 });

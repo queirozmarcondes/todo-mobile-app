@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, Animated } from 'react-native';
+import { useRouter } from 'expo-router';  // Para navegação
 import { Colors } from "@/app/constants/Colors";
 
 export default function SplashScreen() {
+    const router = useRouter();
     const [fadeAnim] = useState(new Animated.Value(0));  // Inicializa a animação
 
     useEffect(() => {
@@ -12,7 +14,12 @@ export default function SplashScreen() {
             duration: 1500,  // Duração da animação
             useNativeDriver: true,
         }).start();
-    }, [fadeAnim]);
+
+        // Navega após a animação (2 segundos após o início)
+        setTimeout(() => {
+            router.replace('/sign-in');  // Navega para a tela de login
+        }, 2000);
+    }, [fadeAnim, router]);
 
     return (
         <View style={styles.container}>

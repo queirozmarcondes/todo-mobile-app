@@ -33,21 +33,27 @@ export function TaskList({ tasks, onToggleTask, onDeleteTask }: TaskListProps) {
                             name={item.completed ? 'checkbox' : 'square-outline'}
                             size={24}
                             color={item.completed ? Colors.defaultTheme.tabIconSelected : Colors.defaultTheme.tabIconDefault}
+                            style={item.completed && styles.completedIcon}
                         />
                     </Pressable>
                     <Text
                         style={[
                             styles.taskText,
-                            item.completed && {
-                                textDecorationLine: 'line-through',
-                                color: '#aaa',
-                            },
+                            item.completed && { textDecorationLine: 'line-through', color: '#aaa' },
                         ]}
                     >
                         {item.title}
                     </Text>
-                    <Pressable onPress={() => onDeleteTask(item.id)}>
-                        <Ionicons name="trash-outline" size={24} color={Colors.defaultTheme.tint} />
+                    {/* Desabilitar exclusão de tarefas concluídas */}
+                    <Pressable
+                        onPress={() => !item.completed && onDeleteTask(item.id)}
+                        disabled={item.completed}
+                    >
+                        <Ionicons
+                            name="trash-outline"
+                            size={24}
+                            color={item.completed ? '#ccc' : Colors.defaultTheme.tint}
+                        />
                     </Pressable>
                 </Animatable.View>
             )}
@@ -75,5 +81,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginLeft: 10,
         color: '#333',
+    },
+    completedIcon: {
+        color: '#4CAF50', // Cor para o ícone de tarefa concluída
     },
 });

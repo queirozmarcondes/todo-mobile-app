@@ -9,16 +9,45 @@ export default function RegisterScreen() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [errorMessages, setErrorMessages] = useState<{ name: string | null, email: string | null, password: string | null }>({
+        name: null,
+        email: null,
+        password: null,
+    });
     const [loading, setLoading] = useState(false);
 
     const handleRegister = async () => {
-        if (!name || !email || !password) {
-            setErrorMessage('Preencha todos os campos!');
+        // Resetando mensagens de erro
+        setErrorMessages({ name: null, email: null, password: null });
+
+        // Validação dos campos
+        let isValid = true;
+        const newErrorMessages: { name: string | null, email: string | null, password: string | null } = {
+            name: null,
+            email: null,
+            password: null,
+        };
+
+        if (!name) {
+            isValid = false;
+            newErrorMessages.name = 'Nome é obrigatório!';
+        }
+
+        if (!email) {
+            isValid = false;
+            newErrorMessages.email = 'Email é obrigatório!';
+        }
+
+        if (!password) {
+            isValid = false;
+            newErrorMessages.password = 'Senha é obrigatória!';
+        }
+
+        if (!isValid) {
+            setErrorMessages(newErrorMessages);
             return;
         }
 
-        setErrorMessage(null);
         setLoading(true);
 
         try {
@@ -26,7 +55,7 @@ export default function RegisterScreen() {
             // Aqui você enviaria os dados para sua API
             router.replace('/sign-in');
         } catch (error) {
-            setErrorMessage('Erro ao criar conta.');
+            setErrorMessages({ name: null, email: null, password: 'Erro ao criar conta.' });
         } finally {
             setLoading(false);
         }
@@ -45,7 +74,7 @@ export default function RegisterScreen() {
                 value={name}
                 onChangeText={setName}
                 placeholder="Digite seu nome"
-                errorMessage={errorMessage}
+                errorMessage={errorMessages.name}
             />
             <Input
                 label="Email"
@@ -53,7 +82,7 @@ export default function RegisterScreen() {
                 onChangeText={setEmail}
                 placeholder="Digite seu email"
                 keyboardType="email-address"
-                errorMessage={errorMessage}
+                errorMessage={errorMessages.email}
             />
             <Input
                 label="Senha"
@@ -61,7 +90,7 @@ export default function RegisterScreen() {
                 onChangeText={setPassword}
                 placeholder="Digite sua senha"
                 secureTextEntry
-                errorMessage={errorMessage}
+                errorMessage={errorMessages.password}
             />
 
             <Button title="Cadastrar" onPress={handleRegister} loading={loading} />

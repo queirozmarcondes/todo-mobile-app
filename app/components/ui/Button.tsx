@@ -33,6 +33,8 @@ export function Button({
             style={[styles.button, style, isDisabled && styles.buttonDisabled]}
             onPress={onPress}
             disabled={isDisabled}
+            accessibilityLabel={title} // Torna o botão acessível com o título
+            accessibilityRole="button" // Define o papel como botão
         >
             {loading ? (
                 <ActivityIndicator color="#fff" />
@@ -41,7 +43,7 @@ export function Button({
             )}
         </TouchableOpacity>
     );
-};
+}
 
 const styles = StyleSheet.create({
     button: {

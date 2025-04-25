@@ -1,108 +1,64 @@
-<<<<<<< HEAD
-import { useContext, createContext, PropsWithChildren, useEffect } from 'react';
-=======
-import { useContext, createContext, PropsWithChildren } from 'react';
->>>>>>> 6fc16853cbe977de184532eaa47db98b164a8511
+import  { createContext, useContext, type PropsWithChildren } from 'react';
 import { useStorageState } from './useStorageState';
 
-// Definindo a tipagem do contexto de autenticação
 interface AuthContextType {
-<<<<<<< HEAD
-    signIn: (email: string, password: string) => Promise<void>; // Função para realizar o login
-=======
-    signIn: () => void; // Função para realizar o login
->>>>>>> 6fc16853cbe977de184532eaa47db98b164a8511
-    signOut: () => void; // Função para realizar o logout
-    session: string | null; // Sessão de autenticação (token ou null)
-    isLoading: boolean; // Estado de carregamento da autenticação
+  signIn: (email: string, password: string) => Promise<void>;
+  signOut: () => void;
+  session: string | null;
+  isLoading: boolean;
 }
 
-// Criação do contexto com a tipagem definida
-<<<<<<< HEAD
 const AuthContext = createContext<AuthContextType>({} as AuthContextType);
-=======
-const AuthContext = createContext<AuthContextType>({
-    signIn: () => { },
-    signOut: () => { },
-    session: null,
-    isLoading: true,
-});
->>>>>>> 6fc16853cbe977de184532eaa47db98b164a8511
 
-/**
- * Hook customizado para acessar os dados do AuthContext
- * @returns Objeto com métodos de login, logout e informações da sessão
- */
 export function useSession() {
-    return useContext(AuthContext); // Retorna o contexto de autenticação para consumo em outros componentes
+  return useContext(AuthContext);
 }
 
-/**
- * Provider do contexto de autenticação (AuthContext).
- * Este componente envolve a árvore de componentes, fornecendo as funções de autenticação
- * e o estado da sessão para todo o app.
- */
 export function SessionProvider({ children }: PropsWithChildren) {
-    // Usa o hook personalizado `useStorageState` para recuperar o estado de autenticação persistido
-    const [[isLoading, session], setSession] = useStorageState('session');
+  const [[isLoading, session], setSession] = useStorageState('session');
 
-<<<<<<< HEAD
-    // useEffect(() => {
-    //     // refresh token
-    // }, [session]);
-
-    const signIn = async (email: string, password: string) => { 
-        // verificar se já existe um token
-        if (session) {
-            console.log('Já existe um token de autenticação.');
-            return;
-        }
-
-        // chamar API de Login
-        const response = await fetch('http://localhost:3000/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-        });
-
-        const data = await response.json();
-
-        if (response.status !== 200) {
-            console.log('Erro ao fazer login:', data.message);
-            return;
-        }
-
-        setSession(data.accessToken);
+  const signIn = async (email: string, password: string) => {
+    if (session) {
+      console.log('Já existe um token de autenticação.');
+      return;
     }
 
-    const signOut = () => {
-        setSession(null); // Limpa o estado da sessão
+    try {
+      const response = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.status !== 200) {
+        console.log('Erro ao fazer login:', data.message);
+        return;
+      }
+
+      setSession(data.accessToken);
+    } catch (error) {
+      console.error('Erro na requisição de login:', error);
     }
+  };
 
-    const signUp = async (email: string, password: string) => {};
+  const signOut = () => {
+    setSession(null);
+  };
 
-=======
->>>>>>> 6fc16853cbe977de184532eaa47db98b164a8511
-    return (
-        <AuthContext.Provider
-            value={{
-                // Função de login simulado: aqui você poderia integrar com uma API de autenticação
-<<<<<<< HEAD
-                signIn, // Substituir 'dummy-token' por um token real
-                // Função de logout: limpa o estado da sessão
-                signOut,
-=======
-                signIn: () => setSession('dummy-token'), // Substituir 'dummy-token' por um token real
-                // Função de logout: limpa o estado da sessão
-                signOut: () => setSession(null),
->>>>>>> 6fc16853cbe977de184532eaa47db98b164a8511
-                session, // Sessão atual (token de autenticação, por exemplo)
-                isLoading, // Indica se os dados da sessão estão sendo carregados
-            }}
-        >
-            {children} {/* Renderiza os filhos do componente provider */}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider
+      value={{
+        signIn,
+        signOut,
+        session,
+        isLoading,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }

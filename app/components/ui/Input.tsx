@@ -15,6 +15,8 @@ export function Input({ label, containerStyle, errorMessage, ...props }: InputPr
             <TextInput
                 style={[styles.input, errorMessage ? styles.inputError : undefined]}
                 {...props}
+                accessibilityLabel={label}  // Acessibilidade
+                accessibilityHint={errorMessage ? 'Por favor, corrija o erro.' : 'Campo de entrada'} // Indicação de erro se houver
             />
             {errorMessage && <Text style={styles.errorText}>{errorMessage}</Text>}
         </View>
@@ -37,10 +39,11 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 16,
         backgroundColor: Colors.defaultTheme.background,
-
+        borderWidth: 1,  // Adicionando borda padrão
+        borderColor: Colors.secondary.main,  // Cor da borda padrão
     },
     inputError: {
-        borderColor: 'red',
+        borderColor: 'red',  // Cor de borda quando há erro
     },
     errorText: {
         fontSize: 12,
